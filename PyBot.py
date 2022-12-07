@@ -1,14 +1,10 @@
 import discord
-#import os
 import random
-#import settings
 from discord.ext import commands
 import os
 from dotenv import load_dotenv
 load_dotenv()
-
 token = os.getenv("TOKEN")
-
 def main():
   intents = discord.Intents.default()
   intents.message_content = True
@@ -17,11 +13,6 @@ def main():
   @bot.event
   async def on_ready():
     print(f'{bot.user.name} is now running!')
-  @bot.event
-  async def on_command_error(ctx, error):
-    if isinstance(error, commands.MissingRequirmentArugements):
-      await ctx.send("You need additional parameters")
-
   @bot.command()
   async def guess_game(ctx, num: int):
     ''' A guessing game with the parameters between 1 to 10.'''
@@ -32,15 +23,12 @@ def main():
       await ctx.send("You need a number between 1 and 10.")
     else:
       await ctx.send("Incorrect, {} was the answer. Please try again!".format(correct))
-
   @bot.command()
   async def who(ctx):
     await ctx.send("asked???? :)")
-
   @bot.command()
   async def what(ctx):
     await ctx.send("made you think I asked????? :D")
-  
   @bot.command()
   async def flipcoin(ctx):
     '''This returns heads or tails once the coin is flipped.'''
